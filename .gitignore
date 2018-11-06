@@ -25,5 +25,5 @@ hs_err_pid*
 #arquivos swp
 *.swp
 
-#arquivos
+#arquivos gitignore
 *.gitignore
