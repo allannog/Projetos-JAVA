@@ -1,3 +1,5 @@
+import javax.swing.JOptionPane;
+
 /**
  *classe conta para que sejam instaciados objetos dessa classe
  *@author Kallan
@@ -21,6 +23,7 @@ public class Conta {
 		 * se o valor informado como parâmetro for menor do que 0, será exibida a mensagem de exceção abaixo 
 		 */
 		if (valor < 0) {
+			
 			throw new Exception("O valor informado é negativo");
 		}
 
@@ -29,7 +32,8 @@ public class Conta {
 		 */
 		this.saldo += valor;
 
-		System.out.println("O depósito foi realizado com sucesso!");
+		JOptionPane.showMessageDialog(null, "O depósito foi realizado com sucesso!");
+		//System.out.println("O depósito foi realizado com sucesso!");
 
 	}
 
@@ -59,7 +63,8 @@ public class Conta {
 		 */
 		this.saldo -= valor;
 
-		System.out.println("O saque foi realizado com sucesso!");
+		JOptionPane.showMessageDialog(null, "O saque foi realizado com sucesso!");
+		//System.out.println("O saque foi realizado com sucesso!");
 
 	}
 

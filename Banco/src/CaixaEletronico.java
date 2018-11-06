@@ -1,6 +1,8 @@
 import java.text.NumberFormat;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 /**
  * @version 1.0
  * @author Kallan
@@ -29,20 +31,23 @@ public class CaixaEletronico {
 		 * criado loop while que usa como parametro o boolean continua
 		 */
 		while (continua) {
-
+			
 			/**
 			 * Enquanto a condição de while for verdadeira ele exibira as opções abaixo
 			 */
-			System.out.println("Selecione sua opção:");
-			System.out.println("1 - Saldo");
-			System.out.println("2 - Depósito");
-			System.out.println("3 - Saque");
-			System.out.println("4 - Encerrar");
-			System.out.print("Digite sua opção: ");
+			
+			int opcao = Integer.parseInt(JOptionPane.showInputDialog("Selecione sua opção:\n"+
+			
+			"1 - Saldo\n"+
+			"2 - Depósito\n"+
+			"3 - Saque\n"+
+			"4 - Encerrar\n"+
+			"Digite sua opção:"
+			));
 			/**
 			 * Ao escolher uma das opções ela será armazenada em um int opcao que esta ligado ao Scanner entrada
 			 */
-			int opcao = entrada.nextInt();
+			//int opcao = entrada.nextInt();
 
 			/**
 			 * Esse int opção ira direcionar através do switch caso ele deve exibir 
@@ -57,10 +62,14 @@ public class CaixaEletronico {
 				/**
 				 * criada uma instancia de NumberFormat para formatar em padrão de moeda brasileira o valor do método getSaldo()
 				 */
+				
+				
 				NumberFormat nf = NumberFormat.getCurrencyInstance();
 				String valorFormato = nf.format(minhaConta.getSaldo());
 				
-				System.out.println("Seu saldo é de " + valorFormato);
+				JOptionPane.showMessageDialog(null, "Seu saldo é de " + valorFormato);
+				
+				//System.out.println("Seu saldo é de " + valorFormato);
 
 				break;
 
@@ -72,8 +81,9 @@ public class CaixaEletronico {
 				/**
 				 * será solicitado que seja digitado o valor a ser depositado
 				 */
-				System.out.print("Digite o valor do depósito: ");
-				double valorDepositado = entrada.nextDouble();
+				//System.out.print("Digite o valor do depósito: ");
+				//double valorDepositado = entrada.nextDouble();
+				double valorDepositado = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor do depósito: "));
 				
 				/**
 				 * caso ocorra uma exceção o try ira tratar a mesma em conjunto com o catch
@@ -81,7 +91,8 @@ public class CaixaEletronico {
 				try {
 					minhaConta.depositar(valorDepositado);
 				} catch (Exception e) {
-					System.out.println("Ocorre um erro no depósito: " + e.getMessage());
+					//System.out.println("Ocorre um erro no depósito: " + e.getMessage());
+					JOptionPane.showMessageDialog(null, e.getMessage(), "Erro no Depósito", JOptionPane.ERROR_MESSAGE);
 				}
 
 				break;
@@ -94,8 +105,9 @@ public class CaixaEletronico {
 				/**
 				 * será solicitado que seja digitado o valor a ser depositado
 				 */
-				System.out.print("Digite o valor do saque: ");
-				double valorSacado = entrada.nextDouble();
+//				System.out.print("Digite o valor do saque: ");
+//				double valorSacado = entrada.nextDouble();
+				double valorSacado = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor do saque: "));
 				
 				/**
 				 * caso ocorra uma exceção o try ira tratar a mesma em conjunto com o catch
@@ -103,7 +115,8 @@ public class CaixaEletronico {
 				try {
 					minhaConta.sacar(valorSacado);
 				} catch (Exception e) {
-					System.out.println("Ocorre um erro no saque: " + e.getMessage());
+					//System.out.println("Ocorre um erro no saque: " + e.getMessage());
+					JOptionPane.showMessageDialog(null, e.getMessage(), "Erro no Saque", JOptionPane.ERROR_MESSAGE);
 				}
 
 				break;
@@ -116,7 +129,9 @@ public class CaixaEletronico {
 				/**
 				 * será exibida a mensagem abaixo e loop while usando continua como true será alterado para false e será encerrada a sessão
 				 */
-				System.out.println("Operação encerrada, obrigado!");
+				
+				JOptionPane.showMessageDialog(null, "Operação encerrada, obrigado", "Sessão Encerrada", JOptionPane.WARNING_MESSAGE);
+				//System.out.println("Operação encerrada, obrigado!");
 				continua = false;
 
 				break;
@@ -125,6 +140,7 @@ public class CaixaEletronico {
 				 * caso seja digitada alguma opção, fora das opções possiveis, será exibida a mensagem abaixo
 				 */
 			default:
+				JOptionPane.showMessageDialog(null, "Opção inválida", "ERRO", JOptionPane.ERROR_MESSAGE);
 				System.out.println("Opção inválida");
 				break;
 			}
